@@ -89,13 +89,7 @@ export function ThickLine({
   );
 }
 
-export function Triangle({
-  size = 40,
-  color = "ink",
-  className,
-  style,
-  rotate = 0,
-}: Base) {
+export function Triangle({ size = 40, color = "ink", className, style, rotate = 0 }: Base) {
   return (
     <div
       aria-hidden

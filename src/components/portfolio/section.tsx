@@ -44,7 +44,9 @@ export function Title({ children, className }: { children: ReactNode; className?
 
 export function Body({ children, className }: { children: ReactNode; className?: string }) {
   return (
-    <p className={cn("max-w-xl text-sm leading-relaxed text-foreground/70 md:text-base", className)}>
+    <p
+      className={cn("max-w-xl text-sm leading-relaxed text-foreground/70 md:text-base", className)}
+    >
       {children}
     </p>
   );
