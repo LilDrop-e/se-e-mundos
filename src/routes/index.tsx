@@ -162,7 +162,7 @@ function Opposites() {
   return (
     <div ref={ref}>
       <Section id="opostas" index={3}>
-        <BleedBlock side="left" color="yellow" top="14%" height={340} />
+        <BleedBlock side="left" color="yellow" top="62%" height={300} />
         <Title>
           E se não
           <br />
@@ -192,7 +192,7 @@ function Opposites() {
 function WorldsSection() {
   return (
     <Section id="mundos" index={4}>
-      <BleedBlock side="left" color="magenta" top="6%" height={360} />
+      <BleedBlock side="left" color="magenta" top="72%" height={260} />
       <Title className="max-w-4xl">
         Talvez seja por isso que eu nunca tenha cabido em uma coisa só.
       </Title>
