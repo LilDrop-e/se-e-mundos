@@ -97,7 +97,7 @@ function Hero() {
           </motion.div>
 
           <motion.div
-            className="absolute bottom-[-10%] left-[38%] hidden md:block"
+            className="absolute bottom-[-22%] left-[4%] hidden md:block"
             style={{ x: tilt.x * 40, y: tilt.y * 24 }}
           >
             <Ring size={140} color="yellow" thickness={14} />
