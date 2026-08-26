@@ -371,7 +371,13 @@ function Testing() {
         <Title>Então eu testo.</Title>
         <div className="mt-12 grid gap-8 md:grid-cols-2">
           {PROJECTS.map((p) => (
-            <article key={p.name} className="border-t-[10px] border-foreground pt-5">
+            <article
+              key={p.name}
+              // fundo opaco no card inteiro: a linha global do ScrollThread
+              // (z-0, atravessa a página inteira) não pode aparecer por trás
+              // da logo (PNG com transparência) nem do título/texto de apoio.
+              className="relative z-20 border-t-[10px] border-foreground bg-background pt-5"
+            >
               <div className="mb-4 flex h-28 items-center gap-6 overflow-hidden">
                 {"logo" in p ? (
                   <img

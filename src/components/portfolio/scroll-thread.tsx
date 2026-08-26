@@ -43,9 +43,12 @@ export function ScrollThread() {
           vectorEffect="non-scaling-stroke"
         />
       </svg>
-      {joints.map((j, i) => (
-        <Dart key={i} {...j} index={i} total={joints.length} progress={drawn} />
-      ))}
+      {joints.map((j, i) => {
+        // a última dobra (transição seção 6→7) pousa em cima do card da FGV
+        // Quest na grade de projetos — removida a pedido, em vez de recolorida.
+        if (i === joints.length - 1) return null;
+        return <Dart key={i} {...j} index={i} total={joints.length} progress={drawn} />;
+      })}
     </div>
   );
 }
