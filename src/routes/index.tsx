@@ -302,6 +302,7 @@ const PROJECTS = [
     name: "Chama",
     text: "Startup de ativações culturais urbanas conectando marcas a comunidades locais.",
     shape: "diamond" as const,
+    logo: "/logos/chama.png",
     cue: "box" as const,
     // chama: hastes subindo, com ponta em seta
     glyph: [
@@ -315,6 +316,7 @@ const PROJECTS = [
     name: "Frank 2.0",
     text: "Assistente pessoal de IA via Telegram: Make.com + Groq/LLaMA 3.3 70B + Google Calendar.",
     shape: "circle" as const,
+    logo: "/logos/frank.png",
     cue: "dart" as const,
     // janela de chat com "rabicho"
     glyph: [
@@ -329,6 +331,7 @@ const PROJECTS = [
     name: "FGV Quest",
     text: "Liga de RPG fundada por mim na faculdade.",
     shape: "ring" as const,
+    logo: "/logos/fgv-quest.png",
     cue: "ball" as const,
     // dado/quadrado montado com pontas sobrando
     glyph: [
@@ -371,10 +374,20 @@ function Testing() {
             <article key={p.name} className="border-t-[10px] border-foreground pt-5">
               <div className="mb-4 flex h-28 items-center gap-6 overflow-hidden">
                 <LineGlyph size={112} thickness={8} segments={p.glyph} />
-                {p.shape === "diamond" && <Diamond size={56} color="magenta" />}
-                {p.shape === "circle" && <Circle size={58} color="blue" />}
-                {p.shape === "ring" && <Ring size={58} color="yellow" thickness={14} />}
-                {p.shape === "triangle" && <Triangle size={60} color="blue" />}
+                {"logo" in p ? (
+                  <img
+                    src={p.logo}
+                    alt={`${p.name} — logo`}
+                    className="h-14 w-auto max-w-[140px] shrink-0 object-contain"
+                  />
+                ) : (
+                  <>
+                    {p.shape === "diamond" && <Diamond size={56} color="magenta" />}
+                    {p.shape === "circle" && <Circle size={58} color="blue" />}
+                    {p.shape === "ring" && <Ring size={58} color="yellow" thickness={14} />}
+                    {p.shape === "triangle" && <Triangle size={60} color="blue" />}
+                  </>
+                )}
                 <ThickLine length={60} thickness={10} color={SHAPE_COLOR[p.shape]} />
               </div>
               <h3 className="font-display text-2xl uppercase leading-[0.95] tracking-[-0.05em] md:text-3xl">
