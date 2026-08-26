@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 
 type World = {
   id: string;
-  shape: "diamond" | "circle" | "ring";
+  shape: "diamond" | "circle" | "triangle";
   color: string;
   title: string;
   body: string;
@@ -15,7 +15,7 @@ const WORLDS: World[] = [
     shape: "diamond",
     color: "var(--brand-magenta)",
     title: "RPG",
-    body: "Mestre de mesa e fundador do FGV Quest. Narrativa, sistemas e a arte de improvisar regras que fazem o grupo inteiro jogar junto.",
+    body: "Jogador de mesa de RPG e cofundador da FGV Quest. Narrativa, sistemas e a arte de improvisar regras que fazem o grupo inteiro jogar junto.",
   },
   {
     id: "skate",
@@ -26,12 +26,17 @@ const WORLDS: World[] = [
   },
   {
     id: "cande",
-    shape: "ring",
+    shape: "triangle",
     color: "var(--brand-yellow)",
-    title: "CANDÊ / TRABALHO",
+    title: "F&B / TRABALHO",
     body: "Seis anos de food & beverage e a Candê: operação real, cliente na frente, comunicação que precisa funcionar no primeiro take.",
   },
 ];
+
+// linha de 6 + linha de 3, paralelas, no ângulo final do losango (55deg) —
+// "furinhos" (buracos na cor de fundo) como um dado
+const DICE_ROW_A = [15, 29, 43, 57, 71, 85];
+const DICE_ROW_B = [29, 50, 71];
 
 export function Worlds() {
   const [active, setActive] = useState<string | null>(null);
@@ -54,29 +59,7 @@ export function Worlds() {
               className="relative flex h-[260px] w-full items-center justify-center outline-none focus-visible:ring-4 focus-visible:ring-foreground md:h-[300px]"
               whileTap={{ scale: 0.96 }}
             >
-              <motion.div
-                animate={
-                  open
-                    ? { scale: 1.08, rotate: w.shape === "diamond" ? 55 : 8 }
-                    : { scale: 1, rotate: w.shape === "diamond" ? 45 : 0 }
-                }
-                transition={{ type: "spring", stiffness: 160, damping: 16 }}
-                style={
-                  w.shape === "ring"
-                    ? {
-                        width: 190,
-                        height: 190,
-                        borderRadius: "9999px",
-                        border: `18px solid ${w.color}`,
-                      }
-                    : {
-                        width: 180,
-                        height: 180,
-                        background: w.color,
-                        borderRadius: w.shape === "circle" ? "9999px" : 0,
-                      }
-                }
-              />
+              <WorldShape world={w} open={open} />
             </motion.button>
 
             <motion.div
@@ -96,5 +79,98 @@ export function Worlds() {
         );
       })}
     </div>
+  );
+}
+
+function WorldShape({ world: w, open }: { world: World; open: boolean }) {
+  if (w.shape === "diamond") {
+    return (
+      <motion.div
+        className="relative"
+        animate={{ scale: open ? 1.08 : 1, rotate: open ? 55 : 45 }}
+        transition={{ type: "spring", stiffness: 160, damping: 16 }}
+        style={{ width: 180, height: 180, background: w.color }}
+      >
+        {/* furinhos: linha de 6 + linha de 3, giram junto (mesmo elemento pai) */}
+        <motion.div
+          className="absolute inset-0"
+          animate={{ opacity: open ? 1 : 0 }}
+          transition={{ duration: 0.25, delay: open ? 0.15 : 0 }}
+        >
+          {DICE_ROW_A.map((x) => (
+            <span
+              key={`a-${x}`}
+              className="absolute h-[10px] w-[10px] rounded-full"
+              style={{ left: `${x}%`, top: "35%", background: "var(--background)" }}
+            />
+          ))}
+          {DICE_ROW_B.map((x) => (
+            <span
+              key={`b-${x}`}
+              className="absolute h-[10px] w-[10px] rounded-full"
+              style={{ left: `${x}%`, top: "65%", background: "var(--background)" }}
+            />
+          ))}
+        </motion.div>
+      </motion.div>
+    );
+  }
+
+  if (w.shape === "circle") {
+    return (
+      <motion.div
+        className="relative rounded-full"
+        animate={{ scale: open ? 1.08 : 1, rotate: open ? 8 : 0 }}
+        transition={{ type: "spring", stiffness: 160, damping: 16 }}
+        style={{ width: 180, height: 180, background: w.color }}
+      >
+        {/* vão central abrindo — a roda */}
+        <motion.div
+          className="absolute left-1/2 top-1/2 rounded-full"
+          style={{ background: "var(--background)", x: "-50%", y: "-50%" }}
+          animate={
+            open ? { width: 64, height: 64, opacity: 1 } : { width: 0, height: 0, opacity: 0 }
+          }
+          transition={{ type: "spring", stiffness: 170, damping: 18 }}
+        />
+      </motion.div>
+    );
+  }
+
+  // triângulo vazado (Kandê): parado é só o contorno; no hover, dois picos
+  // menores sobem da mesma base, tipo chama/serra de montanha
+  return (
+    <motion.div
+      className="relative"
+      animate={{ scale: open ? 1.06 : 1 }}
+      transition={{ type: "spring", stiffness: 160, damping: 16 }}
+      style={{ width: 190, height: 163 }}
+    >
+      <svg viewBox="0 0 100 86" className="h-full w-full overflow-visible">
+        <motion.polygon
+          points="50 30 78 82 22 82"
+          fill={w.color}
+          initial={false}
+          animate={open ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.4 }}
+          style={{ transformOrigin: "50px 82px" }}
+          transition={{ type: "spring", stiffness: 170, damping: 16, delay: open ? 0.05 : 0 }}
+        />
+        <motion.polygon
+          points="50 50 66 82 34 82"
+          fill={w.color}
+          initial={false}
+          animate={open ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.4 }}
+          style={{ transformOrigin: "50px 82px" }}
+          transition={{ type: "spring", stiffness: 170, damping: 16, delay: open ? 0.15 : 0 }}
+        />
+        <polygon
+          points="50 4 96 82 4 82"
+          fill="none"
+          stroke={w.color}
+          strokeWidth={12}
+          strokeLinejoin="miter"
+        />
+      </svg>
+    </motion.div>
   );
 }
