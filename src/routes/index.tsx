@@ -4,9 +4,12 @@ import { motion, useScroll, useTransform } from "motion/react";
 
 import { Circle, Diamond, Ring, ThickLine, Triangle } from "@/components/shapes";
 import { ScrollThread } from "@/components/portfolio/scroll-thread";
+import { ScrollCue } from "@/components/portfolio/scroll-cue";
+import { LineGlyph, type Seg } from "@/components/portfolio/line-glyph";
 import { BleedBlock } from "@/components/portfolio/bleed-block";
 import { Body, Section, Title } from "@/components/portfolio/section";
 import { Worlds } from "@/components/portfolio/worlds";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -107,6 +110,12 @@ function Hero() {
           </div>
         </motion.div>
 
+        {/* montagem: "?" construtivista feito só de linhas h/v */}
+        <div className="pointer-events-none absolute left-[6%] top-[14%] z-0 hidden md:block">
+          <LineGlyph size={150} segments={GLYPH_ASK} />
+        </div>
+
+
         <motion.div
           className="pointer-events-none absolute bottom-6 left-1/2 z-0 -translate-x-1/2"
           animate={{ y: [0, 14, 0] }}
@@ -124,6 +133,38 @@ function Hero() {
     </div>
   );
 }
+
+/* glifos de montagem — apenas segmentos horizontais/verticais ---------- */
+const GLYPH_ASK: Seg[] = [
+  { x: 12, y: 8, len: 62, dir: "h", from: [-60, -30], color: "magenta" },
+  { x: 70, y: 8, len: 34, dir: "v", from: [50, -20] },
+  { x: 40, y: 40, len: 32, dir: "h", from: [40, 30], color: "blue" },
+  { x: 40, y: 40, len: 30, dir: "v", from: [0, 50], arrow: "end", color: "blue" },
+  { x: 40, y: 84, len: 12, dir: "h", from: [-40, 40], color: "yellow" },
+];
+
+const GLYPH_MERGE: Seg[] = [
+  { x: 6, y: 20, len: 40, dir: "h", from: [-50, 0], color: "magenta" },
+  { x: 6, y: 20, len: 46, dir: "v", from: [-40, 20] },
+  { x: 54, y: 60, len: 40, dir: "h", from: [60, 0], color: "blue" },
+  { x: 88, y: 16, len: 46, dir: "v", from: [40, -20], arrow: "end", color: "blue" },
+  { x: 30, y: 62, len: 48, dir: "h", from: [0, 45], color: "yellow" },
+];
+
+const GLYPH_GRID: Seg[] = [
+  { x: 10, y: 24, len: 78, dir: "h", from: [-45, 0], color: "blue" },
+  { x: 10, y: 62, len: 78, dir: "h", from: [45, 0], color: "magenta" },
+  { x: 30, y: 6, len: 84, dir: "v", from: [0, -45] },
+  { x: 66, y: 10, len: 80, dir: "v", from: [0, 45], color: "yellow" },
+];
+
+const GLYPH_UP: Seg[] = [
+  { x: 46, y: 14, len: 74, dir: "v", from: [0, 50], arrow: "start", color: "magenta" },
+  { x: 14, y: 70, len: 34, dir: "h", from: [-50, 20], color: "blue" },
+  { x: 56, y: 44, len: 32, dir: "h", from: [50, -20], color: "yellow" },
+  { x: 20, y: 90, len: 62, dir: "h", from: [0, 40] },
+];
+
 
 /* 02 --------------------------------------------------------------- */
 function Ask() {
@@ -144,10 +185,11 @@ function Ask() {
             Espaço reservado para o texto definitivo desta seção.
           </Body>
         </div>
+        <ScrollCue variant="ball" color="magenta" className="mt-14" />
       </div>
-      <div className="pointer-events-none absolute bottom-[10%] right-[6%] z-0 hidden items-end gap-6 md:flex">
-        <Circle size={110} color="yellow" />
-        <Triangle size={70} color="blue" />
+      <div className="pointer-events-none absolute bottom-[6%] left-[6%] z-0 hidden items-end gap-10 md:flex">
+        <LineGlyph size={150} segments={GLYPH_ASK} />
+        <Circle size={90} color="yellow" />
       </div>
     </Section>
   );
@@ -181,9 +223,10 @@ function Opposites() {
               <motion.div style={{ rotate }}>
                 <Diamond size={110} color="magenta" rotate={0} />
               </motion.div>
-              <Ring size={100} color="blue" thickness={12} />
+              <LineGlyph size={150} segments={GLYPH_MERGE} />
             </div>
           </div>
+          <ScrollCue variant="box" color="blue" className="mt-12" />
         </div>
       </Section>
     </div>
@@ -195,6 +238,9 @@ function WorldsSection() {
   return (
     <Section id="mundos" index={4}>
       <BleedBlock side="left" color="magenta" top="88%" height={160} />
+      <div className="pointer-events-none absolute right-[4%] top-[10%] z-0 hidden md:block">
+        <LineGlyph size={170} segments={GLYPH_GRID} />
+      </div>
       <div className="relative z-10">
         <Title className="max-w-4xl">
           Talvez seja por isso que eu nunca tenha cabido em uma coisa só.
@@ -203,6 +249,7 @@ function WorldsSection() {
           Passe o cursor ou toque em cada forma
         </p>
         <Worlds />
+        <ScrollCue variant="dart" color="yellow" className="mt-12" />
       </div>
     </Section>
   );
@@ -230,10 +277,11 @@ function Mindset() {
             lado, ela ainda não está pronta.
           </Body>
         </div>
+        <ScrollCue variant="ball" color="blue" className="mt-12" />
       </div>
-      <div className="pointer-events-none absolute bottom-[8%] left-[4%] z-0 hidden items-end gap-8 md:flex">
+      <div className="pointer-events-none absolute bottom-[8%] left-[4%] z-0 hidden items-end gap-10 md:flex">
         <Ring size={120} color="yellow" thickness={16} />
-        <ThickLine length={160} thickness={10} />
+        <LineGlyph size={160} segments={GLYPH_UP} />
       </div>
     </Section>
   );
@@ -245,21 +293,55 @@ const PROJECTS = [
     name: "Chama",
     text: "Startup de ativações culturais urbanas conectando marcas a comunidades locais.",
     shape: "diamond" as const,
+    cue: "box" as const,
+    // chama: hastes subindo, com ponta em seta
+    glyph: [
+      { x: 20, y: 74, len: 56, dir: "h", from: [-40, 30], color: "magenta" },
+      { x: 34, y: 22, len: 54, dir: "v", from: [0, 55], arrow: "start", color: "magenta" },
+      { x: 58, y: 40, len: 38, dir: "v", from: [40, 40], color: "yellow" },
+      { x: 12, y: 54, len: 24, dir: "h", from: [-55, 0] },
+    ] as Seg[],
   },
   {
     name: "Frank 2.0",
     text: "Assistente pessoal de IA via Telegram: Make.com + Groq/LLaMA 3.3 70B + Google Calendar.",
     shape: "circle" as const,
+    cue: "dart" as const,
+    // janela de chat com "rabicho"
+    glyph: [
+      { x: 12, y: 18, len: 72, dir: "h", from: [0, -50], color: "blue" },
+      { x: 12, y: 18, len: 44, dir: "v", from: [-50, 0], color: "blue" },
+      { x: 80, y: 18, len: 44, dir: "v", from: [50, 0] },
+      { x: 12, y: 60, len: 72, dir: "h", from: [30, 40], color: "yellow" },
+      { x: 26, y: 60, len: 22, dir: "v", from: [0, 50], arrow: "end", color: "blue" },
+    ] as Seg[],
   },
   {
     name: "FGV Quest",
     text: "Liga de RPG fundada por mim na faculdade.",
     shape: "ring" as const,
+    cue: "ball" as const,
+    // dado/quadrado montado com pontas sobrando
+    glyph: [
+      { x: 16, y: 20, len: 66, dir: "h", from: [-45, -20], color: "yellow" },
+      { x: 22, y: 72, len: 70, dir: "h", from: [45, 20], color: "yellow" },
+      { x: 20, y: 14, len: 66, dir: "v", from: [0, -45], color: "magenta" },
+      { x: 76, y: 24, len: 62, dir: "v", from: [0, 45] },
+    ] as Seg[],
   },
   {
     name: "Pesquisa de análise de dados",
     text: "Análise aplicada a um banco de dados com 1 milhão de observações.",
     shape: "triangle" as const,
+    cue: "bar" as const,
+    // eixos + barras
+    glyph: [
+      { x: 14, y: 12, len: 74, dir: "v", from: [-40, 0] },
+      { x: 14, y: 84, len: 74, dir: "h", from: [0, 45], arrow: "end", color: "magenta" },
+      { x: 32, y: 52, len: 32, dir: "v", from: [0, 40], color: "blue" },
+      { x: 52, y: 34, len: 50, dir: "v", from: [35, 20], color: "yellow" },
+      { x: 70, y: 60, len: 24, dir: "v", from: [45, 0], color: "magenta" },
+    ] as Seg[],
   },
 ];
 
@@ -278,17 +360,19 @@ function Testing() {
         <div className="mt-12 grid gap-8 md:grid-cols-2">
           {PROJECTS.map((p) => (
             <article key={p.name} className="border-t-[10px] border-foreground pt-5">
-              <div className="mb-4 flex h-24 items-center gap-4">
-                {p.shape === "diamond" && <Diamond size={72} color="magenta" />}
-                {p.shape === "circle" && <Circle size={76} color="blue" />}
-                {p.shape === "ring" && <Ring size={76} color="yellow" thickness={16} />}
-                {p.shape === "triangle" && <Triangle size={78} color="blue" />}
-                <ThickLine length={90} thickness={10} color={SHAPE_COLOR[p.shape]} />
+              <div className="mb-4 flex h-28 items-center gap-6">
+                <LineGlyph size={112} thickness={8} segments={p.glyph} />
+                {p.shape === "diamond" && <Diamond size={56} color="magenta" />}
+                {p.shape === "circle" && <Circle size={58} color="blue" />}
+                {p.shape === "ring" && <Ring size={58} color="yellow" thickness={14} />}
+                {p.shape === "triangle" && <Triangle size={60} color="blue" />}
+                <ThickLine length={60} thickness={10} color={SHAPE_COLOR[p.shape]} />
               </div>
               <h3 className="font-display text-2xl uppercase leading-[0.95] tracking-[-0.05em] md:text-3xl">
                 {p.name}
               </h3>
               <p className="mt-2 text-sm text-foreground/70">{p.text}</p>
+              <ScrollCue variant={p.cue} color={SHAPE_COLOR[p.shape]} className="mt-6 max-w-xs" />
             </article>
           ))}
         </div>
