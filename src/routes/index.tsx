@@ -184,10 +184,11 @@ function Ask() {
             Espaço reservado para o texto definitivo desta seção.
           </Body>
         </div>
+        <ScrollCue variant="ball" color="magenta" className="mt-14" />
       </div>
-      <div className="pointer-events-none absolute bottom-[10%] right-[6%] z-0 hidden items-end gap-6 md:flex">
+      <div className="pointer-events-none absolute bottom-[10%] right-[6%] z-0 hidden items-end gap-8 md:flex">
         <Circle size={110} color="yellow" />
-        <Triangle size={70} color="blue" />
+        <LineGlyph size={150} segments={GLYPH_ASK} />
       </div>
     </Section>
   );
