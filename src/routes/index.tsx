@@ -328,7 +328,7 @@ const PROJECTS = [
   },
   {
     name: "FGV Quest",
-    text: "Liga de RPG que cofundei na faculdade — atuo nas áreas de desenvolvimento e eventos.",
+    text: "Cofundador da liga de pesquisa de jogos. Atuo nas áreas de desenvolvimento e eventos.",
     shape: "ring" as const,
     logo: "/logos/fgv-quest.png",
     cue: "ball" as const,

@@ -33,9 +33,9 @@ const WORLDS: World[] = [
   },
 ];
 
-// linha de 6 + linha de 3, paralelas, no ângulo final do losango (55deg) —
-// "furinhos" (buracos na cor de fundo) como um dado
-const DICE_ROW_A = [15, 29, 43, 57, 71, 85];
+// duas linhas de 3, paralelas, no ângulo final do losango (55deg) — 6
+// "furinhos" ao todo (buracos na cor de fundo) como um dado
+const DICE_ROW_A = [29, 50, 71];
 const DICE_ROW_B = [29, 50, 71];
 
 export function Worlds() {
@@ -91,7 +91,7 @@ function WorldShape({ world: w, open }: { world: World; open: boolean }) {
         transition={{ type: "spring", stiffness: 160, damping: 16 }}
         style={{ width: 180, height: 180, background: w.color }}
       >
-        {/* furinhos: linha de 6 + linha de 3, giram junto (mesmo elemento pai) */}
+        {/* furinhos: duas linhas de 3, giram junto (mesmo elemento pai) */}
         <motion.div
           className="absolute inset-0"
           animate={{ opacity: open ? 1 : 0 }}
@@ -100,14 +100,14 @@ function WorldShape({ world: w, open }: { world: World; open: boolean }) {
           {DICE_ROW_A.map((x) => (
             <span
               key={`a-${x}`}
-              className="absolute h-[10px] w-[10px] rounded-full"
+              className="absolute h-[15px] w-[15px] rounded-full"
               style={{ left: `${x}%`, top: "35%", background: "var(--background)" }}
             />
           ))}
           {DICE_ROW_B.map((x) => (
             <span
               key={`b-${x}`}
-              className="absolute h-[10px] w-[10px] rounded-full"
+              className="absolute h-[15px] w-[15px] rounded-full"
               style={{ left: `${x}%`, top: "65%", background: "var(--background)" }}
             />
           ))}
