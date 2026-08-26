@@ -33,10 +33,9 @@ const WORLDS: World[] = [
   },
 ];
 
-// duas linhas de 3, paralelas, no ângulo final do losango (55deg) — 6
-// "furinhos" ao todo (buracos na cor de fundo) como um dado
-const DICE_ROW_A = [29, 50, 71];
-const DICE_ROW_B = [29, 50, 71];
+// padrão de dado de verdade: 2 colunas x 3 linhas, centralizado no quadrado
+const DICE_COLS = [32, 68];
+const DICE_ROWS = [25, 50, 75];
 
 export function Worlds() {
   const [active, setActive] = useState<string | null>(null);
@@ -87,30 +86,27 @@ function WorldShape({ world: w, open }: { world: World; open: boolean }) {
     return (
       <motion.div
         className="relative"
-        animate={{ scale: open ? 1.08 : 1, rotate: open ? 55 : 45 }}
+        // quadrado parado; no hover só um tiltzinho leve, não vira losango
+        animate={{ scale: open ? 1.08 : 1, rotate: open ? 8 : 0 }}
         transition={{ type: "spring", stiffness: 160, damping: 16 }}
         style={{ width: 180, height: 180, background: w.color }}
       >
-        {/* furinhos: duas linhas de 3, giram junto (mesmo elemento pai) */}
+        {/* furinhos: padrão de dado de verdade — 2 colunas x 3 linhas,
+            centralizados, giram junto (mesmo elemento pai) */}
         <motion.div
           className="absolute inset-0"
           animate={{ opacity: open ? 1 : 0 }}
           transition={{ duration: 0.25, delay: open ? 0.15 : 0 }}
         >
-          {DICE_ROW_A.map((x) => (
-            <span
-              key={`a-${x}`}
-              className="absolute h-[15px] w-[15px] rounded-full"
-              style={{ left: `${x}%`, top: "35%", background: "var(--background)" }}
-            />
-          ))}
-          {DICE_ROW_B.map((x) => (
-            <span
-              key={`b-${x}`}
-              className="absolute h-[15px] w-[15px] rounded-full"
-              style={{ left: `${x}%`, top: "65%", background: "var(--background)" }}
-            />
-          ))}
+          {DICE_COLS.flatMap((x) =>
+            DICE_ROWS.map((y) => (
+              <span
+                key={`${x}-${y}`}
+                className="absolute h-[20px] w-[20px] -translate-x-1/2 -translate-y-1/2 rounded-full"
+                style={{ left: `${x}%`, top: `${y}%`, background: "var(--background)" }}
+              />
+            )),
+          )}
         </motion.div>
       </motion.div>
     );
