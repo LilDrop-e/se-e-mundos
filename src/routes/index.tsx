@@ -292,21 +292,55 @@ const PROJECTS = [
     name: "Chama",
     text: "Startup de ativações culturais urbanas conectando marcas a comunidades locais.",
     shape: "diamond" as const,
+    cue: "box" as const,
+    // chama: hastes subindo, com ponta em seta
+    glyph: [
+      { x: 20, y: 74, len: 56, dir: "h", from: [-40, 30], color: "magenta" },
+      { x: 34, y: 22, len: 54, dir: "v", from: [0, 55], arrow: "start", color: "magenta" },
+      { x: 58, y: 40, len: 38, dir: "v", from: [40, 40], color: "yellow" },
+      { x: 12, y: 54, len: 24, dir: "h", from: [-55, 0] },
+    ] as Seg[],
   },
   {
     name: "Frank 2.0",
     text: "Assistente pessoal de IA via Telegram: Make.com + Groq/LLaMA 3.3 70B + Google Calendar.",
     shape: "circle" as const,
+    cue: "dart" as const,
+    // janela de chat com "rabicho"
+    glyph: [
+      { x: 12, y: 18, len: 72, dir: "h", from: [0, -50], color: "blue" },
+      { x: 12, y: 18, len: 44, dir: "v", from: [-50, 0], color: "blue" },
+      { x: 80, y: 18, len: 44, dir: "v", from: [50, 0] },
+      { x: 12, y: 60, len: 72, dir: "h", from: [30, 40], color: "yellow" },
+      { x: 26, y: 60, len: 22, dir: "v", from: [0, 50], arrow: "end", color: "blue" },
+    ] as Seg[],
   },
   {
     name: "FGV Quest",
     text: "Liga de RPG fundada por mim na faculdade.",
     shape: "ring" as const,
+    cue: "ball" as const,
+    // dado/quadrado montado com pontas sobrando
+    glyph: [
+      { x: 16, y: 20, len: 66, dir: "h", from: [-45, -20], color: "yellow" },
+      { x: 22, y: 72, len: 70, dir: "h", from: [45, 20], color: "yellow" },
+      { x: 20, y: 14, len: 66, dir: "v", from: [0, -45], color: "magenta" },
+      { x: 76, y: 24, len: 62, dir: "v", from: [0, 45] },
+    ] as Seg[],
   },
   {
     name: "Pesquisa de análise de dados",
     text: "Análise aplicada a um banco de dados com 1 milhão de observações.",
     shape: "triangle" as const,
+    cue: "bar" as const,
+    // eixos + barras
+    glyph: [
+      { x: 14, y: 12, len: 74, dir: "v", from: [-40, 0] },
+      { x: 14, y: 84, len: 74, dir: "h", from: [0, 45], arrow: "end", color: "magenta" },
+      { x: 32, y: 52, len: 32, dir: "v", from: [0, 40], color: "blue" },
+      { x: 52, y: 34, len: 50, dir: "v", from: [35, 20], color: "yellow" },
+      { x: 70, y: 60, len: 24, dir: "v", from: [45, 0], color: "magenta" },
+    ] as Seg[],
   },
 ];
 
@@ -325,17 +359,19 @@ function Testing() {
         <div className="mt-12 grid gap-8 md:grid-cols-2">
           {PROJECTS.map((p) => (
             <article key={p.name} className="border-t-[10px] border-foreground pt-5">
-              <div className="mb-4 flex h-24 items-center gap-4">
-                {p.shape === "diamond" && <Diamond size={72} color="magenta" />}
-                {p.shape === "circle" && <Circle size={76} color="blue" />}
-                {p.shape === "ring" && <Ring size={76} color="yellow" thickness={16} />}
-                {p.shape === "triangle" && <Triangle size={78} color="blue" />}
-                <ThickLine length={90} thickness={10} color={SHAPE_COLOR[p.shape]} />
+              <div className="mb-4 flex h-28 items-center gap-6">
+                <LineGlyph size={112} thickness={8} segments={p.glyph} />
+                {p.shape === "diamond" && <Diamond size={56} color="magenta" />}
+                {p.shape === "circle" && <Circle size={58} color="blue" />}
+                {p.shape === "ring" && <Ring size={58} color="yellow" thickness={14} />}
+                {p.shape === "triangle" && <Triangle size={60} color="blue" />}
+                <ThickLine length={60} thickness={10} color={SHAPE_COLOR[p.shape]} />
               </div>
               <h3 className="font-display text-2xl uppercase leading-[0.95] tracking-[-0.05em] md:text-3xl">
                 {p.name}
               </h3>
               <p className="mt-2 text-sm text-foreground/70">{p.text}</p>
+              <ScrollCue variant={p.cue} color={SHAPE_COLOR[p.shape]} className="mt-6 max-w-xs" />
             </article>
           ))}
         </div>
