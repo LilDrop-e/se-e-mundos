@@ -28,7 +28,7 @@ export function BleedBlock({ side, color, height = 280, top = "18%" }: Props) {
   const x = useTransform(scrollYProgress, [0, 1], [dir * shift, dir * -shift]);
 
   return (
-    <div ref={ref} className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+    <div ref={ref} className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
       <motion.div
         className="absolute"
         style={{
