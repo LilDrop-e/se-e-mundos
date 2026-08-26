@@ -153,7 +153,7 @@ function WorldShape({ world: w, open }: { world: World; open: boolean }) {
         />
         <motion.polygon
           points="50 50 66 82 34 82"
-          fill="none"
+          fill="var(--background)"
           stroke={w.color}
           strokeWidth={6}
           strokeLinejoin="miter"
