@@ -272,22 +272,21 @@ function Mindset() {
               perguntas para
               <br />o que eu crio.
             </Title>
-            <div className="mt-10 grid max-w-4xl gap-6 md:grid-cols-2">
-              <Body>
-                Perguntar é só o começo: o que sustenta é transformar dúvida em processo. Cada
-                projeto começa com uma hipótese improvável e vira uma coisa que precisa funcionar no
-                mundo real.
-              </Body>
-              <Body>
-                Não separo criar de comunicar. Se a ideia não se explica sozinha para quem está do
-                outro lado, ela ainda não está pronta.
-              </Body>
-            </div>
+            {/* texto mais curto que o padrão do site — corpo um degrau maior
+                (text-base/md:text-xl em vez de text-sm/md:text-base) pra
+                ocupar o respiro sem estourar o contraste com o título */}
+            <Body className="mt-10 max-w-2xl text-base leading-relaxed md:text-xl">
+              Pergunta é só o começo. Transformar dúvida em processo — não separo criar de
+              comunicar. Se a ideia não se explica sozinha, ainda não está pronta.
+            </Body>
           </div>
+          {/* formas decorativas engordadas ~20% pra compensar o texto mais
+              curto — ficam isoladas na própria coluna do grid, sem risco de
+              esbarrar no texto */}
           <div className="pointer-events-none hidden items-end justify-end gap-10 md:flex">
-            <Ring size={120} color="yellow" thickness={16} />
-            <LineGlyph size={160} segments={GLYPH_UP} />
-            <HollowTriangle size={74} color="magenta" thickness={12} rotate={-8} />
+            <Ring size={144} color="yellow" thickness={18} />
+            <LineGlyph size={190} segments={GLYPH_UP} />
+            <HollowTriangle size={90} color="magenta" thickness={14} rotate={-8} />
           </div>
         </div>
         <ScrollCue variant="ball" color="magenta" className="mt-12" />
