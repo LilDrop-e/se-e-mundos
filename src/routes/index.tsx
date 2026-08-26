@@ -222,9 +222,10 @@ function Opposites() {
               <motion.div style={{ rotate }}>
                 <Diamond size={110} color="magenta" rotate={0} />
               </motion.div>
-              <Ring size={100} color="blue" thickness={12} />
+              <LineGlyph size={150} segments={GLYPH_MERGE} />
             </div>
           </div>
+          <ScrollCue variant="box" color="blue" className="mt-12" />
         </div>
       </Section>
     </div>
