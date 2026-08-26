@@ -32,8 +32,8 @@ const WORLDS: World[] = [
     shape: "ring",
     color: "var(--brand-yellow)",
     label: "Anel vazado",
-    title: "CANDÊ / TRABALHO",
-    body: "Seis anos de food & beverage e a Candê: operação real, cliente na frente, comunicação que precisa funcionar no primeiro take.",
+    title: "KANDÊ / TRABALHO",
+    body: "Seis anos de food & beverage e a Kandê: operação real, cliente na frente, comunicação que precisa funcionar no primeiro take.",
   },
 ];
 

@@ -10,7 +10,6 @@ import { BleedBlock } from "@/components/portfolio/bleed-block";
 import { Body, Section, Title } from "@/components/portfolio/section";
 import { Worlds } from "@/components/portfolio/worlds";
 
-
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -103,9 +102,7 @@ function Hero() {
           <div className="mt-10 flex items-center gap-6">
             <ThickLine length={120} thickness={10} />
             <p className="font-display text-xs uppercase leading-[1.5] tracking-[0.2em] text-foreground/70 md:text-sm">
-              PEDRO_COMUNICAÇÃO_DIGITAL
-              <br />
-              FGV RIO
+              PEDRO DURAN / ECMI / FGV RIO
             </p>
           </div>
         </motion.div>
@@ -114,7 +111,6 @@ function Hero() {
         <div className="pointer-events-none absolute left-[6%] top-[14%] z-0 hidden md:block">
           <LineGlyph size={150} segments={GLYPH_ASK} />
         </div>
-
 
         <motion.div
           className="pointer-events-none absolute bottom-6 left-1/2 z-0 -translate-x-1/2"
@@ -165,7 +161,6 @@ const GLYPH_UP: Seg[] = [
   { x: 20, y: 90, len: 62, dir: "h", from: [0, 40] },
 ];
 
-
 /* 02 --------------------------------------------------------------- */
 function Ask() {
   return (
@@ -178,11 +173,8 @@ function Ask() {
           perguntar.
         </Title>
         <div className="mt-10 border-t-[10px] border-[color:var(--brand-magenta)] pt-5">
-          <p className="font-display text-sm uppercase tracking-[0.3em] text-[color:var(--brand-magenta)]">
-            [ aguardando copy final ]
-          </p>
-          <Body className="mt-3">
-            Espaço reservado para o texto definitivo desta seção.
+          <Body className="max-w-2xl">
+            “Quando alguma coisa parece óbvia demais, eu começo a procurar o que não estou vendo.”
           </Body>
         </div>
         <ScrollCue variant="ball" color="magenta" className="mt-14" />
@@ -213,6 +205,11 @@ function Opposites() {
             <br />
             ser opostas?
           </Title>
+          <ul className="mt-8 flex flex-wrap gap-x-8 gap-y-3 font-display text-sm uppercase tracking-[0.25em] text-foreground/80 md:text-base">
+            <li>RAZÃO × EMOÇÃO</li>
+            <li>DADOS × NARRATIVA</li>
+            <li>TECNOLOGIA × HUMANO</li>
+          </ul>
           <div className="mt-10 grid gap-10 md:grid-cols-2">
             <Body>
               Skate, RPG, universidade e trabalho não são gavetas. São a mesma prática: leitura de
@@ -249,6 +246,21 @@ function WorldsSection() {
           Passe o cursor ou toque em cada forma
         </p>
         <Worlds />
+        <p className="mt-14 flex flex-wrap gap-x-4 gap-y-2 font-display text-xs uppercase tracking-[0.3em] text-foreground/50">
+          <span>SKATE</span>
+          <span>·</span>
+          <span>RPG</span>
+          <span>·</span>
+          <span>GAMES</span>
+          <span>·</span>
+          <span>CULTURA</span>
+          <span>·</span>
+          <span>TECNOLOGIA</span>
+          <span>·</span>
+          <span>COMUNICAÇÃO</span>
+          <span>·</span>
+          <span>ESTRATÉGIA</span>
+        </p>
         <ScrollCue variant="dart" color="yellow" className="mt-12" />
       </div>
     </Section>
@@ -267,16 +279,9 @@ function Mindset() {
           perguntas para
           <br />o que eu crio.
         </Title>
-        <div className="mt-10 grid max-w-4xl gap-6 md:grid-cols-2">
-          <Body>
-            Perguntar é só o começo: o que sustenta é transformar dúvida em processo. Cada projeto
-            começa com uma hipótese improvável e vira uma coisa que precisa funcionar no mundo real.
-          </Body>
-          <Body>
-            Não separo criar de comunicar. Se a ideia não se explica sozinha para quem está do outro
-            lado, ela ainda não está pronta.
-          </Body>
-        </div>
+        <Body className="mt-10 max-w-3xl">
+          “Ideias me interessam. Descobrir até onde elas podem chegar, mais ainda.”
+        </Body>
         <ScrollCue variant="ball" color="blue" className="mt-12" />
       </div>
       <div className="pointer-events-none absolute bottom-[8%] left-[4%] z-0 hidden items-end gap-10 md:flex">
@@ -411,7 +416,12 @@ function Contact() {
             className="mt-10 inline-flex items-center gap-4 bg-foreground px-8 py-5 font-display text-lg uppercase tracking-[-0.03em] text-background transition-colors hover:bg-[color:var(--brand-magenta)]"
           >
             Falar com Pedro
-            <Triangle size={20} color="ink" rotate={-90} style={{ borderTopColor: "currentColor" }} />
+            <Triangle
+              size={20}
+              color="ink"
+              rotate={-90}
+              style={{ borderTopColor: "currentColor" }}
+            />
           </a>
         </div>
       </Section>
