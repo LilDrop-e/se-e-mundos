@@ -10,7 +10,6 @@ import { BleedBlock } from "@/components/portfolio/bleed-block";
 import { Body, Section, Title } from "@/components/portfolio/section";
 import { Worlds } from "@/components/portfolio/worlds";
 
-
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -113,7 +112,6 @@ function Hero() {
           <LineGlyph size={150} segments={GLYPH_ASK} />
         </div>
 
-
         <motion.div
           className="pointer-events-none absolute bottom-6 left-1/2 z-0 -translate-x-1/2"
           animate={{ y: [0, 14, 0] }}
@@ -162,7 +160,6 @@ const GLYPH_UP: Seg[] = [
   { x: 56, y: 44, len: 32, dir: "h", from: [50, -20], color: "yellow" },
   { x: 20, y: 90, len: 62, dir: "h", from: [0, 40] },
 ];
-
 
 /* 02 --------------------------------------------------------------- */
 function Ask() {
@@ -419,7 +416,12 @@ function Contact() {
             className="mt-10 inline-flex items-center gap-4 bg-foreground px-8 py-5 font-display text-lg uppercase tracking-[-0.03em] text-background transition-colors hover:bg-[color:var(--brand-magenta)]"
           >
             Falar com Pedro
-            <Triangle size={20} color="ink" rotate={-90} style={{ borderTopColor: "currentColor" }} />
+            <Triangle
+              size={20}
+              color="ink"
+              rotate={-90}
+              style={{ borderTopColor: "currentColor" }}
+            />
           </a>
         </div>
       </Section>
