@@ -111,9 +111,10 @@ function Hero() {
         </motion.div>
 
         {/* montagem: "?" construtivista feito só de linhas h/v */}
-        <div className="pointer-events-none absolute bottom-[14%] right-[6%] z-0 hidden md:block">
-          <LineGlyph size={170} segments={GLYPH_ASK} />
+        <div className="pointer-events-none absolute left-[6%] top-[14%] z-0 hidden md:block">
+          <LineGlyph size={150} segments={GLYPH_ASK} />
         </div>
+
 
         <motion.div
           className="pointer-events-none absolute bottom-6 left-1/2 z-0 -translate-x-1/2"
