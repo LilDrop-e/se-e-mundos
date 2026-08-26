@@ -276,10 +276,11 @@ function Mindset() {
             lado, ela ainda não está pronta.
           </Body>
         </div>
+        <ScrollCue variant="ball" color="blue" className="mt-12" />
       </div>
-      <div className="pointer-events-none absolute bottom-[8%] left-[4%] z-0 hidden items-end gap-8 md:flex">
+      <div className="pointer-events-none absolute bottom-[8%] left-[4%] z-0 hidden items-end gap-10 md:flex">
         <Ring size={120} color="yellow" thickness={16} />
-        <ThickLine length={160} thickness={10} />
+        <LineGlyph size={160} segments={GLYPH_UP} />
       </div>
     </Section>
   );
