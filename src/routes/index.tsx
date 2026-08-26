@@ -186,9 +186,9 @@ function Ask() {
         </div>
         <ScrollCue variant="ball" color="magenta" className="mt-14" />
       </div>
-      <div className="pointer-events-none absolute bottom-[10%] right-[6%] z-0 hidden items-end gap-8 md:flex">
-        <Circle size={110} color="yellow" />
+      <div className="pointer-events-none absolute bottom-[6%] left-[6%] z-0 hidden items-end gap-10 md:flex">
         <LineGlyph size={150} segments={GLYPH_ASK} />
+        <Circle size={90} color="yellow" />
       </div>
     </Section>
   );
