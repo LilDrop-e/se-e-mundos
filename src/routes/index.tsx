@@ -2,7 +2,15 @@ import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "motion/react";
 
-import { Circle, Diamond, Ring, ThickLine, Triangle } from "@/components/shapes";
+import {
+  Circle,
+  Diamond,
+  HollowSquare,
+  HollowTriangle,
+  Ring,
+  ThickLine,
+  Triangle,
+} from "@/components/shapes";
 import { ScrollThread } from "@/components/portfolio/scroll-thread";
 import { ScrollCue } from "@/components/portfolio/scroll-cue";
 import { LineGlyph, type Seg } from "@/components/portfolio/line-glyph";
@@ -103,10 +111,11 @@ function Hero() {
           <div className="mt-10 flex items-center gap-6">
             <ThickLine length={120} thickness={10} />
             <p className="font-display text-xs uppercase leading-[1.5] tracking-[0.2em] text-foreground/70 md:text-sm">
-              PEDRO_COMUNICAÇÃO_DIGITAL
-              <br />
-              FGV RIO
+              PEDRO DURAN / ECMI / FGV RIO
             </p>
+          </div>
+          <div className="mt-16 opacity-40">
+            <Triangle size={16} />
           </div>
         </motion.div>
 
@@ -114,15 +123,6 @@ function Hero() {
         <div className="pointer-events-none absolute left-[6%] top-[14%] z-0 hidden md:block">
           <LineGlyph size={150} segments={GLYPH_ASK} />
         </div>
-
-
-        <motion.div
-          className="pointer-events-none absolute bottom-6 left-1/2 z-0 -translate-x-1/2"
-          animate={{ y: [0, 14, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-        >
-          <Triangle size={30} />
-        </motion.div>
 
         {eggs >= 3 && (
           <span className="absolute bottom-10 right-8 z-10 font-display text-xs uppercase tracking-[0.3em] text-[color:var(--brand-magenta)]">
@@ -172,24 +172,28 @@ function Ask() {
     <Section id="pergunta" index={2}>
       <BleedBlock side="right" color="blue" top="72%" height={200} />
       <div className="relative z-10">
-        <Title>
-          Eu costumo
-          <br />
-          perguntar.
-        </Title>
-        <div className="mt-10 border-t-[10px] border-[color:var(--brand-magenta)] pt-5">
-          <p className="font-display text-sm uppercase tracking-[0.3em] text-[color:var(--brand-magenta)]">
-            [ aguardando copy final ]
-          </p>
-          <Body className="mt-3">
-            Espaço reservado para o texto definitivo desta seção.
-          </Body>
+        <div className="grid gap-10 md:grid-cols-[minmax(0,1.15fr)_minmax(260px,0.85fr)] md:items-end">
+          <div>
+            <Title>
+              Eu costumo
+              <br />
+              perguntar.
+            </Title>
+            <div className="mt-10 border-t-[10px] border-[color:var(--brand-magenta)] pt-5">
+              <p className="font-display text-sm uppercase tracking-[0.3em] text-[color:var(--brand-magenta)]">
+                [ aguardando copy final ]
+              </p>
+              <Body className="mt-3">
+                Espaço reservado para o texto definitivo desta seção.
+              </Body>
+            </div>
+          </div>
+          <div className="pointer-events-none hidden items-end justify-end gap-10 md:flex">
+            <LineGlyph size={150} segments={GLYPH_ASK} />
+            <HollowSquare size={92} color="yellow" thickness={12} rotate={5} />
+          </div>
         </div>
         <ScrollCue variant="ball" color="magenta" className="mt-14" />
-      </div>
-      <div className="pointer-events-none absolute bottom-[6%] left-[6%] z-0 hidden items-end gap-10 md:flex">
-        <LineGlyph size={150} segments={GLYPH_ASK} />
-        <Circle size={90} color="yellow" />
       </div>
     </Section>
   );
@@ -238,16 +242,20 @@ function WorldsSection() {
   return (
     <Section id="mundos" index={4}>
       <BleedBlock side="left" color="magenta" top="88%" height={160} />
-      <div className="pointer-events-none absolute right-[4%] top-[10%] z-0 hidden md:block">
-        <LineGlyph size={170} segments={GLYPH_GRID} />
-      </div>
       <div className="relative z-10">
-        <Title className="max-w-4xl">
-          Talvez seja por isso que eu nunca tenha cabido em uma coisa só.
-        </Title>
-        <p className="mt-6 text-xs uppercase tracking-[0.3em] text-foreground/50">
-          Passe o cursor ou toque em cada forma
-        </p>
+        <div className="grid gap-10 md:grid-cols-[minmax(0,1.2fr)_minmax(240px,0.8fr)] md:items-start">
+          <div>
+            <Title className="max-w-4xl">
+              Talvez seja por isso que eu nunca tenha cabido em uma coisa só.
+            </Title>
+            <p className="mt-6 text-xs uppercase tracking-[0.3em] text-foreground/50">
+              Passe o cursor ou toque em cada forma
+            </p>
+          </div>
+          <div className="pointer-events-none hidden justify-end md:flex">
+            <LineGlyph size={170} segments={GLYPH_GRID} />
+          </div>
+        </div>
         <Worlds />
         <ScrollCue variant="dart" color="yellow" className="mt-12" />
       </div>
@@ -261,27 +269,32 @@ function Mindset() {
     <Section id="criar" index={5}>
       <BleedBlock side="right" color="blue" top="80%" height={190} />
       <div className="relative z-10">
-        <Title>
-          E eu levo essas
-          <br />
-          perguntas para
-          <br />o que eu crio.
-        </Title>
-        <div className="mt-10 grid max-w-4xl gap-6 md:grid-cols-2">
-          <Body>
-            Perguntar é só o começo: o que sustenta é transformar dúvida em processo. Cada projeto
-            começa com uma hipótese improvável e vira uma coisa que precisa funcionar no mundo real.
-          </Body>
-          <Body>
-            Não separo criar de comunicar. Se a ideia não se explica sozinha para quem está do outro
-            lado, ela ainda não está pronta.
-          </Body>
+        <div className="grid gap-10 md:grid-cols-[minmax(0,1.15fr)_minmax(260px,0.85fr)] md:items-end">
+          <div>
+            <Title>
+              E eu levo essas
+              <br />
+              perguntas para
+              <br />o que eu crio.
+            </Title>
+            <div className="mt-10 grid max-w-4xl gap-6 md:grid-cols-2">
+              <Body>
+                Perguntar é só o começo: o que sustenta é transformar dúvida em processo. Cada projeto
+                começa com uma hipótese improvável e vira uma coisa que precisa funcionar no mundo real.
+              </Body>
+              <Body>
+                Não separo criar de comunicar. Se a ideia não se explica sozinha para quem está do outro
+                lado, ela ainda não está pronta.
+              </Body>
+            </div>
+          </div>
+          <div className="pointer-events-none hidden items-end justify-end gap-10 md:flex">
+            <Ring size={120} color="yellow" thickness={16} />
+            <LineGlyph size={160} segments={GLYPH_UP} />
+            <HollowTriangle size={74} color="magenta" thickness={12} rotate={-8} />
+          </div>
         </div>
-        <ScrollCue variant="ball" color="blue" className="mt-12" />
-      </div>
-      <div className="pointer-events-none absolute bottom-[8%] left-[4%] z-0 hidden items-end gap-10 md:flex">
-        <Ring size={120} color="yellow" thickness={16} />
-        <LineGlyph size={160} segments={GLYPH_UP} />
+        <ScrollCue variant="ball" color="magenta" className="mt-12" />
       </div>
     </Section>
   );
@@ -360,7 +373,7 @@ function Testing() {
         <div className="mt-12 grid gap-8 md:grid-cols-2">
           {PROJECTS.map((p) => (
             <article key={p.name} className="border-t-[10px] border-foreground pt-5">
-              <div className="mb-4 flex h-28 items-center gap-6">
+              <div className="mb-4 flex h-28 items-center gap-6 overflow-hidden">
                 <LineGlyph size={112} thickness={8} segments={p.glyph} />
                 {p.shape === "diamond" && <Diamond size={56} color="magenta" />}
                 {p.shape === "circle" && <Circle size={58} color="blue" />}
