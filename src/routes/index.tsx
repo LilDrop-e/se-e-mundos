@@ -110,6 +110,11 @@ function Hero() {
           </div>
         </motion.div>
 
+        {/* montagem: "?" construtivista feito só de linhas h/v */}
+        <div className="pointer-events-none absolute bottom-[14%] right-[6%] z-0 hidden md:block">
+          <LineGlyph size={170} segments={GLYPH_ASK} />
+        </div>
+
         <motion.div
           className="pointer-events-none absolute bottom-6 left-1/2 z-0 -translate-x-1/2"
           animate={{ y: [0, 14, 0] }}
@@ -127,6 +132,38 @@ function Hero() {
     </div>
   );
 }
+
+/* glifos de montagem — apenas segmentos horizontais/verticais ---------- */
+const GLYPH_ASK: Seg[] = [
+  { x: 12, y: 8, len: 62, dir: "h", from: [-60, -30], color: "magenta" },
+  { x: 70, y: 8, len: 34, dir: "v", from: [50, -20] },
+  { x: 40, y: 40, len: 32, dir: "h", from: [40, 30], color: "blue" },
+  { x: 40, y: 40, len: 30, dir: "v", from: [0, 50], arrow: "end", color: "blue" },
+  { x: 40, y: 84, len: 12, dir: "h", from: [-40, 40], color: "yellow" },
+];
+
+const GLYPH_MERGE: Seg[] = [
+  { x: 6, y: 20, len: 40, dir: "h", from: [-50, 0], color: "magenta" },
+  { x: 6, y: 20, len: 46, dir: "v", from: [-40, 20] },
+  { x: 54, y: 60, len: 40, dir: "h", from: [60, 0], color: "blue" },
+  { x: 88, y: 16, len: 46, dir: "v", from: [40, -20], arrow: "end", color: "blue" },
+  { x: 30, y: 62, len: 48, dir: "h", from: [0, 45], color: "yellow" },
+];
+
+const GLYPH_GRID: Seg[] = [
+  { x: 10, y: 24, len: 78, dir: "h", from: [-45, 0], color: "blue" },
+  { x: 10, y: 62, len: 78, dir: "h", from: [45, 0], color: "magenta" },
+  { x: 30, y: 6, len: 84, dir: "v", from: [0, -45] },
+  { x: 66, y: 10, len: 80, dir: "v", from: [0, 45], color: "yellow" },
+];
+
+const GLYPH_UP: Seg[] = [
+  { x: 46, y: 14, len: 74, dir: "v", from: [0, 50], arrow: "start", color: "magenta" },
+  { x: 14, y: 70, len: 34, dir: "h", from: [-50, 20], color: "blue" },
+  { x: 56, y: 44, len: 32, dir: "h", from: [50, -20], color: "yellow" },
+  { x: 20, y: 90, len: 62, dir: "h", from: [0, 40] },
+];
+
 
 /* 02 --------------------------------------------------------------- */
 function Ask() {
