@@ -29,7 +29,7 @@ const WORLDS: World[] = [
     shape: "triangle",
     color: "var(--brand-yellow)",
     title: "F&B / TRABALHO",
-    body: "Seis anos de food & beverage e a Candê: operação real, cliente na frente, comunicação que precisa funcionar no primeiro take.",
+    body: "Seis anos de food & beverage: Belmond, Candê, Glorioso Sushi. Operação real, cliente na frente, comunicação que precisa funcionar no primeiro take.",
   },
 ];
 
@@ -153,7 +153,10 @@ function WorldShape({ world: w, open }: { world: World; open: boolean }) {
         />
         <motion.polygon
           points="50 50 66 82 34 82"
-          fill={w.color}
+          fill="none"
+          stroke={w.color}
+          strokeWidth={6}
+          strokeLinejoin="miter"
           initial={false}
           animate={open ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.4 }}
           style={{ transformOrigin: "50px 82px" }}
