@@ -38,7 +38,7 @@ export function ScrollThread() {
           stroke="var(--foreground)"
           strokeLinejoin="miter"
           strokeLinecap="butt"
-          style={{ pathLength: drawn, strokeWidth: isMobile ? 1.1 : 0.7 }}
+          style={{ pathLength: drawn, strokeWidth: isMobile ? 8 : 10 }}
           vectorEffect="non-scaling-stroke"
         />
       </svg>
