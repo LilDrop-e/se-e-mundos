@@ -237,6 +237,9 @@ function WorldsSection() {
   return (
     <Section id="mundos" index={4}>
       <BleedBlock side="left" color="magenta" top="88%" height={160} />
+      <div className="pointer-events-none absolute right-[4%] top-[10%] z-0 hidden md:block">
+        <LineGlyph size={170} segments={GLYPH_GRID} />
+      </div>
       <div className="relative z-10">
         <Title className="max-w-4xl">
           Talvez seja por isso que eu nunca tenha cabido em uma coisa só.
@@ -245,6 +248,7 @@ function WorldsSection() {
           Passe o cursor ou toque em cada forma
         </p>
         <Worlds />
+        <ScrollCue variant="dart" color="yellow" className="mt-12" />
       </div>
     </Section>
   );
