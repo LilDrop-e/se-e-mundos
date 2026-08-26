@@ -4,9 +4,12 @@ import { motion, useScroll, useTransform } from "motion/react";
 
 import { Circle, Diamond, Ring, ThickLine, Triangle } from "@/components/shapes";
 import { ScrollThread } from "@/components/portfolio/scroll-thread";
+import { ScrollCue } from "@/components/portfolio/scroll-cue";
+import { LineGlyph, type Seg } from "@/components/portfolio/line-glyph";
 import { BleedBlock } from "@/components/portfolio/bleed-block";
 import { Body, Section, Title } from "@/components/portfolio/section";
 import { Worlds } from "@/components/portfolio/worlds";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
