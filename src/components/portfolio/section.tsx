@@ -32,7 +32,7 @@ export function Title({ children, className }: { children: ReactNode; className?
   return (
     <h2
       className={cn(
-        "font-display uppercase leading-[0.85] tracking-[-0.05em] text-foreground",
+        "relative z-20 bg-background font-display uppercase leading-[0.85] tracking-[-0.05em] text-foreground",
         "text-[clamp(2.4rem,8vw,6.5rem)]",
         className,
       )}
@@ -45,7 +45,10 @@ export function Title({ children, className }: { children: ReactNode; className?
 export function Body({ children, className }: { children: ReactNode; className?: string }) {
   return (
     <p
-      className={cn("max-w-xl text-sm leading-relaxed text-foreground/70 md:text-base", className)}
+      className={cn(
+        "relative z-20 max-w-xl bg-background text-sm leading-relaxed text-foreground/70 md:text-base",
+        className,
+      )}
     >
       {children}
     </p>
