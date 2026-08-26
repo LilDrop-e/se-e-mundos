@@ -5,7 +5,6 @@ type World = {
   id: string;
   shape: "diamond" | "circle" | "ring";
   color: string;
-  label: string;
   title: string;
   body: string;
 };
@@ -15,7 +14,6 @@ const WORLDS: World[] = [
     id: "rpg",
     shape: "diamond",
     color: "var(--brand-magenta)",
-    label: "Losango",
     title: "RPG",
     body: "Mestre de mesa e fundador do FGV Quest. Narrativa, sistemas e a arte de improvisar regras que fazem o grupo inteiro jogar junto.",
   },
@@ -23,7 +21,6 @@ const WORLDS: World[] = [
     id: "skate",
     shape: "circle",
     color: "var(--brand-blue)",
-    label: "Círculo",
     title: "SKATE",
     body: "Repetir a mesma manobra até ela virar linguagem. Errar em público, cair, levantar. Disciplina que não parece disciplina.",
   },
@@ -31,7 +28,6 @@ const WORLDS: World[] = [
     id: "cande",
     shape: "ring",
     color: "var(--brand-yellow)",
-    label: "Anel vazado",
     title: "CANDÊ / TRABALHO",
     body: "Seis anos de food & beverage e a Candê: operação real, cliente na frente, comunicação que precisa funcionar no primeiro take.",
   },
@@ -81,9 +77,6 @@ export function Worlds() {
                       }
                 }
               />
-              <span className="pointer-events-none absolute bottom-0 font-display text-xs uppercase tracking-[0.35em] text-foreground/50">
-                {w.label}
-              </span>
             </motion.button>
 
             <motion.div

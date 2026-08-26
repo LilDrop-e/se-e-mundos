@@ -65,6 +65,62 @@ export function Ring({
   );
 }
 
+export function HollowSquare({
+  size = 120,
+  color = "magenta",
+  thickness = 12,
+  className,
+  style,
+  rotate = 0,
+}: Base & { thickness?: number }) {
+  return (
+    <div
+      aria-hidden
+      className={cn("shrink-0", className)}
+      style={{
+        width: size,
+        height: size,
+        border: `${thickness}px solid ${fill[color]}`,
+        transform: rotate ? `rotate(${rotate}deg)` : undefined,
+        ...style,
+      }}
+    />
+  );
+}
+
+export function HollowTriangle({
+  size = 120,
+  color = "blue",
+  thickness = 12,
+  className,
+  style,
+  rotate = 0,
+}: Base & { thickness?: number }) {
+  const inset = Math.max(thickness, size * 0.12);
+
+  return (
+    <svg
+      aria-hidden
+      viewBox="0 0 100 86"
+      className={cn("shrink-0 overflow-visible", className)}
+      style={{
+        width: size,
+        height: size * 0.86,
+        transform: rotate ? `rotate(${rotate}deg)` : undefined,
+        ...style,
+      }}
+    >
+      <polygon
+        points="50 4 96 82 4 82"
+        fill="none"
+        stroke={fill[color]}
+        strokeWidth={(inset / size) * 100}
+        strokeLinejoin="miter"
+      />
+    </svg>
+  );
+}
+
 export function ThickLine({
   length = 240,
   thickness = 10,
