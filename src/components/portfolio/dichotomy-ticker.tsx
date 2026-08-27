@@ -19,7 +19,7 @@ export function DichotomyTicker() {
       <motion.div
         className="flex whitespace-nowrap font-display text-3xl uppercase tracking-[-0.02em] text-foreground md:text-6xl"
         animate={{ x: ["0%", "-50%"] }}
-        transition={{ duration: 46, repeat: Infinity, ease: "linear" }}
+        transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
       >
         <span>{track}</span>
         <span>{track}</span>
