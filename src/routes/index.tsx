@@ -330,7 +330,7 @@ const PROJECTS = [
   },
   {
     name: "FGV Quest",
-    href: "https://www.instagram.com/fgvquest?igsi=Zmg5d3o0cXN4Y3g5",
+    href: "https://www.instagram.com/fgvquest/",
     text: "Cofundador da liga de pesquisa de jogos. Atuo nas áreas de desenvolvimento e eventos.",
     shape: "ring" as const,
     logo: "/logos/fgv-quest.png",
