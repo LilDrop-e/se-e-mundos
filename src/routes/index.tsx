@@ -12,7 +12,7 @@ import {
   Triangle,
 } from "@/components/shapes";
 import { ScrollThread } from "@/components/portfolio/scroll-thread";
-import { DichotomyWords } from "@/components/portfolio/dichotomy-words";
+import { DichotomyTicker } from "@/components/portfolio/dichotomy-ticker";
 import { ScrollCue } from "@/components/portfolio/scroll-cue";
 import { LineGlyph, type Seg } from "@/components/portfolio/line-glyph";
 import { BleedBlock } from "@/components/portfolio/bleed-block";
@@ -47,6 +47,7 @@ function Home() {
       <ScrollThread />
       <Hero />
       <Ask />
+      <DichotomyTicker />
       <Opposites />
       <WorldsSection />
       <Mindset />
@@ -180,7 +181,7 @@ function Ask() {
             </Title>
             <div className="mt-10 border-t-[10px] border-[color:var(--brand-magenta)] pt-5">
               <p className="font-display text-sm uppercase tracking-[0.3em] text-[color:var(--brand-magenta)]">
-                E se o óbvio for só o que eu ainda não fui procurar?
+                O que eu não estou vendo quando algo parece óbvio demais?
               </p>
             </div>
           </div>
@@ -205,7 +206,6 @@ function Opposites() {
       <Section id="opostas" index={3}>
         <BleedBlock side="left" color="yellow" top="80%" height={200} />
         <div className="relative z-10">
-          <DichotomyWords />
           <Title>
             E se não
             <br />
