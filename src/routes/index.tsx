@@ -462,7 +462,7 @@ function Contact() {
           </Title>
           <Body className="mt-8">E se a próxima pergunta for sua?</Body>
           <a
-            href="mailto:pxaum21@gmail.com"
+            href="mailto:duranpe21@gmail.com"
             className="mt-10 inline-flex items-center gap-4 bg-foreground px-8 py-5 font-display text-lg uppercase tracking-[-0.03em] text-background transition-colors hover:bg-[color:var(--brand-magenta)]"
           >
             Me chama
