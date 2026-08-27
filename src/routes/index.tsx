@@ -373,12 +373,13 @@ function Testing() {
         <Title>Então eu testo.</Title>
         <div className="mt-12 grid gap-8 md:grid-cols-2">
           {PROJECTS.map((p) => {
-            // fundo opaco no card inteiro: a linha global do ScrollThread
-            // (z-0, atravessa a página inteira) não pode aparecer por trás
-            // da logo (PNG com transparência) nem do título/texto de apoio.
+            // fundo opaco no card inteiro, SEMPRE 100% opaco (mesmo no hover):
+            // a linha global do ScrollThread (z-0, atravessa a página inteira)
+            // não pode aparecer por trás da logo, do título ou do texto de
+            // apoio — por isso o hover não pode mexer em opacity/bg aqui,
+            // só em elementos internos (ver seta ↗ abaixo).
             const cardClassName =
-              "relative z-20 block border-t-[10px] border-foreground bg-background pt-5" +
-              ("href" in p ? " transition-opacity hover:opacity-80" : "");
+              "group relative z-20 block border-t-[10px] border-foreground bg-background pt-5";
 
             const content = (
               <>
@@ -401,7 +402,10 @@ function Testing() {
                 <h3 className="font-display text-2xl uppercase leading-[0.95] tracking-[-0.05em] md:text-3xl">
                   {p.name}
                   {"href" in p && (
-                    <span aria-hidden className="ml-2 inline-block align-top text-lg">
+                    <span
+                      aria-hidden
+                      className="ml-2 inline-block align-top text-lg transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1"
+                    >
                       ↗
                     </span>
                   )}
