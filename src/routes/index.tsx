@@ -188,7 +188,6 @@ function Ask() {
             <HollowSquare size={92} color="yellow" thickness={12} rotate={5} />
           </div>
         </div>
-        <ScrollCue variant="ball" color="magenta" className="mt-14" />
       </div>
     </Section>
   );
