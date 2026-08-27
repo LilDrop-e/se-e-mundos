@@ -460,14 +460,12 @@ function Contact() {
             <br />
             conversar.
           </Title>
-          <Body className="mt-8">
-            Se alguma dessas perguntas ficou na sua cabeça, ela também é sua. Me chama.
-          </Body>
+          <Body className="mt-8">E se a próxima pergunta for sua?</Body>
           <a
-            href="mailto:pedro@exemplo.com"
+            href="mailto:pxaum21@gmail.com"
             className="mt-10 inline-flex items-center gap-4 bg-foreground px-8 py-5 font-display text-lg uppercase tracking-[-0.03em] text-background transition-colors hover:bg-[color:var(--brand-magenta)]"
           >
-            Falar com Pedro
+            Me chama
             <Triangle
               size={20}
               color="ink"
@@ -475,6 +473,32 @@ function Contact() {
               style={{ borderTopColor: "currentColor" }}
             />
           </a>
+          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 font-display text-sm uppercase tracking-[0.2em] text-foreground/70">
+            <a
+              href="https://www.instagram.com/dro.p_art.ur/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-foreground"
+            >
+              Instagram
+            </a>
+            <a
+              href="https://www.linkedin.com/in/pedrodurann/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-foreground"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://github.com/LilDrop-e"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-foreground"
+            >
+              GitHub
+            </a>
+          </div>
         </div>
       </Section>
     </div>
