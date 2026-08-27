@@ -26,7 +26,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Portfólio de Pedro: comunicação digital, FGV Quest, Chama, Frank 2.0 e pesquisa de dados. Uma pergunta como método: E SE?",
+          "Portfólio de Pedro: comunicação digital, FGV Quest, Chama, Frank e pesquisa de dados. Uma pergunta como método: E SE?",
       },
       { property: "og:title", content: "Pedro — E SE? Portfólio Bauhaus" },
       {
@@ -314,7 +314,7 @@ const PROJECTS = [
     ] as Seg[],
   },
   {
-    name: "Frank 2.0",
+    name: "Frank",
     text: "Assistente pessoal de IA via Telegram: Make.com + Groq/LLaMA 3.3 70B + Google Calendar.",
     shape: "circle" as const,
     logo: "/logos/frank.png",
