@@ -300,6 +300,7 @@ function Mindset() {
 const PROJECTS = [
   {
     name: "Chama",
+    href: "https://chamac.lovable.app",
     text: "Startup de ativações culturais urbanas conectando marcas a comunidades locais.",
     shape: "diamond" as const,
     logo: "/logos/chama.png",
@@ -329,6 +330,7 @@ const PROJECTS = [
   },
   {
     name: "FGV Quest",
+    href: "https://www.instagram.com/fgvquest?igsi=Zmg5d3o0cXN4Y3g5",
     text: "Cofundador da liga de pesquisa de jogos. Atuo nas áreas de desenvolvimento e eventos.",
     shape: "ring" as const,
     logo: "/logos/fgv-quest.png",
@@ -370,37 +372,62 @@ function Testing() {
       <div className="relative z-10">
         <Title>Então eu testo.</Title>
         <div className="mt-12 grid gap-8 md:grid-cols-2">
-          {PROJECTS.map((p) => (
-            <article
-              key={p.name}
-              // fundo opaco no card inteiro: a linha global do ScrollThread
-              // (z-0, atravessa a página inteira) não pode aparecer por trás
-              // da logo (PNG com transparência) nem do título/texto de apoio.
-              className="relative z-20 border-t-[10px] border-foreground bg-background pt-5"
-            >
-              <div className="mb-4 flex h-28 items-center gap-6 overflow-hidden">
-                {"logo" in p ? (
-                  <img
-                    src={p.logo}
-                    alt={`${p.name} — logo`}
-                    className="h-14 w-auto max-w-[140px] shrink-0 object-contain"
-                  />
-                ) : (
-                  <>
-                    {p.shape === "diamond" && <Diamond size={56} color="magenta" />}
-                    {p.shape === "circle" && <Circle size={58} color="blue" />}
-                    {p.shape === "ring" && <Ring size={58} color="yellow" thickness={14} />}
-                  </>
-                )}
-                <LineGlyph size={112} thickness={8} segments={p.glyph} />
-              </div>
-              <h3 className="font-display text-2xl uppercase leading-[0.95] tracking-[-0.05em] md:text-3xl">
-                {p.name}
-              </h3>
-              <p className="mt-2 text-sm text-foreground/70">{p.text}</p>
-              <ScrollCue variant={p.cue} color={SHAPE_COLOR[p.shape]} className="mt-6 max-w-xs" />
-            </article>
-          ))}
+          {PROJECTS.map((p) => {
+            // fundo opaco no card inteiro: a linha global do ScrollThread
+            // (z-0, atravessa a página inteira) não pode aparecer por trás
+            // da logo (PNG com transparência) nem do título/texto de apoio.
+            const cardClassName =
+              "relative z-20 block border-t-[10px] border-foreground bg-background pt-5" +
+              ("href" in p ? " transition-opacity hover:opacity-80" : "");
+
+            const content = (
+              <>
+                <div className="mb-4 flex h-28 items-center gap-6 overflow-hidden">
+                  {"logo" in p ? (
+                    <img
+                      src={p.logo}
+                      alt={`${p.name} — logo`}
+                      className="h-14 w-auto max-w-[140px] shrink-0 object-contain"
+                    />
+                  ) : (
+                    <>
+                      {p.shape === "diamond" && <Diamond size={56} color="magenta" />}
+                      {p.shape === "circle" && <Circle size={58} color="blue" />}
+                      {p.shape === "ring" && <Ring size={58} color="yellow" thickness={14} />}
+                    </>
+                  )}
+                  <LineGlyph size={112} thickness={8} segments={p.glyph} />
+                </div>
+                <h3 className="font-display text-2xl uppercase leading-[0.95] tracking-[-0.05em] md:text-3xl">
+                  {p.name}
+                  {"href" in p && (
+                    <span aria-hidden className="ml-2 inline-block align-top text-lg">
+                      ↗
+                    </span>
+                  )}
+                </h3>
+                <p className="mt-2 text-sm text-foreground/70">{p.text}</p>
+                <ScrollCue variant={p.cue} color={SHAPE_COLOR[p.shape]} className="mt-6 max-w-xs" />
+              </>
+            );
+
+            return "href" in p ? (
+              <a
+                key={p.name}
+                href={p.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${p.name} — abrir site em nova aba`}
+                className={cardClassName}
+              >
+                {content}
+              </a>
+            ) : (
+              <article key={p.name} className={cardClassName}>
+                {content}
+              </article>
+            );
+          })}
         </div>
       </div>
     </Section>
